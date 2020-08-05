@@ -12,3 +12,4 @@ class ResPartner(models.Model):
         '"Donations". This value will be used to indicate the use of the '
         'information from the document that authorize to receive '
         'deductible donations, granted by SAT')
+    generic_customer = fields.Boolean("Generic Customer")
