@@ -17,4 +17,10 @@
             </t>
         </xpath>
     </template>
+
+     <template id="general_public_invoice" inherit_id="l10n_mx_edi.cfdiv33">
+        <xpath expr="(//*[local-name()='Receptor'])" position="attributes">
+            <attribute name="t-att-Rfc">record.vat_general_public_sale if record.is_generic_invoice else customer.l10n_mx_edi_get_customer_rfc()</attribute>
+        </xpath>
+     </template>
 </odoo>
