@@ -14,10 +14,6 @@
         "data/donations.xml",
         "views/res_company_view.xml",
         "views/res_partner_view.xml",
-
-        "views/product_view.xml",
-        "views/invoice_view.xml",
-        "data/partner.xml"
     ],
     'demo': [
     ],
