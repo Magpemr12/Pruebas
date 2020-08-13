@@ -17,6 +17,7 @@
 
         "views/product_view.xml",
         "views/invoice_view.xml",
+        "views/invoice_report.xml",
         "data/partner.xml"
     ],
     'demo': [

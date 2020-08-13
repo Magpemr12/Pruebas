@@ -10,6 +10,13 @@ class Invoice(models.Model):
     is_generic_invoice = fields.Boolean("General Public Invoice", copy=False)
     vat_general_public_sale = fields.Char("General Public Sale Vat", copy=False)
 
+    def _get_rfc(self, payment, customer):
+        if payment.invoice_ids:
+            invoice = payment.invoice_ids[0]
+            if invoice.is_generic_invoice:
+                return invoice.vat_general_public_sale
+        return customer.l10n_mx_edi_get_customer_rfc()
+
     @api.multi
     def action_invoice_open(self):
         for invoice in self:
@@ -46,6 +53,9 @@ class Invoice(models.Model):
                 if not self.env.ref('l10n_mx_edi_donat.generic_customer').vat:
                     raise UserError(_("Could not found VAT for 'General Public Sale'!"))
                 invoice.vat_general_public_sale = self.env.ref('l10n_mx_edi_donat.generic_customer').vat
+
+            if invoice.donation and not invoice.partner_id.l10n_mx_edi_donations:
+                raise UserError(_("'Need Donation?' flag must be set in Customer if 'Donation' flag set in Invoice!"))
         res = super(Invoice, self).action_invoice_open()
         return res
 

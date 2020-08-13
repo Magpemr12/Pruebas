@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="rfc_report_invoice_document" inherit_id="account.report_invoice_document">
+            <xpath expr="//div[@class='mt16']" position="replace">
+                <t t-if="o.is_generic_invoice">
+                    <div class="mt16">
+                        <t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:
+                        <span t-field="o.vat_general_public_sale"/></div>
+                </t>
+                <t t-else="">
+                    <div t-if="o.partner_id.vat" class="mt16">
+                        <t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>:
+                        <span t-field="o.partner_id.vat"/></div>
+                </t>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>
