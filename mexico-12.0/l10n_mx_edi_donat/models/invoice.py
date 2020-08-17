@@ -54,8 +54,6 @@ class Invoice(models.Model):
                     raise UserError(_("Could not found VAT for 'General Public Sale'!"))
                 invoice.vat_general_public_sale = self.env.ref('l10n_mx_edi_donat.generic_customer').vat
 
-            if invoice.donation and not invoice.partner_id.l10n_mx_edi_donations:
-                raise UserError(_("'Need Donation?' flag must be set in Customer if 'Donation' flag set in Invoice!"))
         res = super(Invoice, self).action_invoice_open()
         return res
 

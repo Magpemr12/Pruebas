@@ -2,7 +2,7 @@
 <odoo>
     <template id="donations" inherit_id="l10n_mx_edi.cfdiv33">
         <xpath expr="*" position="inside">
-            <t t-if="record.partner_id.l10n_mx_edi_donations">
+            <t t-if="record.partner_id.l10n_mx_edi_donations or record.donation">
                 <cfdi:Complemento
                     xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
